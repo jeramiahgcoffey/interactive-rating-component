@@ -1,49 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+    <head>
+        <meta charset="UTF-8" />
+        <!-- displays site properly based on user's device -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="./images/favicon-32x32.png"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+            integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <link rel="stylesheet" href="style.css" />
+        <title>Frontend Mentor | Interactive rating component</title>
+    </head>
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Interactive rating component</title>
+    <body>
+        <!-- Rating state start -->
+        <div class="container">
+            <div class="card">
+                <div class="star"><i class="fa fa-star"></i></div>
+                <div class="heading">How did we do?</div>
+                <p>
+                    Please let us know how we did with your support request. All
+                    feedback is appreciated to help us improve our offering!
+                </p>
+                <div class="rating-container">
+                    <div class="rating" id="1">1</div>
+                    <div class="rating" id="2">2</div>
+                    <div class="rating" id="3">3</div>
+                    <div class="rating" id="4">4</div>
+                    <div class="rating" id="5">5</div>
+                </div>
+                <div>
+                    <div class="submit" id="submit">SUBMIT</div>
+                </div>
+            </div>
+        </div>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+        <!-- Rating state end -->
 
-  <!-- Rating state start -->
+        <!-- Thank you state start -->
 
-  How did we do?
+        You selected
+        <!-- Add rating here -->
+        out of 5 Thank you! We appreciate you taking the time to give a rating.
+        If you ever need more support, don’t hesitate to get in touch!
 
-  Please let us know how we did with your support request. All feedback is appreciated 
-  to help us improve our offering!
+        <!-- Thank you state end -->
 
-  1 2 3 4 5
+        <div class="attribution">
+            Challenge by
+            <a
+                href="https://www.frontendmentor.io?ref=challenge"
+                target="_blank"
+                >Frontend Mentor</a
+            >. Coded by <a href="#">Jeramiah Coffey</a>.
+        </div>
 
-  Submit
+        <script>
+            let selectedRating = null;
+            // Selectors
+            const ratingElements = document.getElementsByClassName('rating');
+            const submitButton = document.getElementById('submit');
 
-  <!-- Rating state end -->
+            // Handler functions
+            function handleRatingSelect(e) {
+                console.log(e.target);
+                if (selectedRating) {
+                    selectedRating.classList.toggle('selected');
+                    selectedRating = e.target;
+                    selectedRating.classList.toggle('selected');
+                } else {
+                    selectedRating = e.target;
+                    selectedRating.classList.toggle('selected');
+                }
+            }
 
-  <!-- Thank you state start -->
+            function handleSubmit() {
+                selectedRating.classList.toggle('selected');
+                selectedRating = null;
+            }
 
-  You selected <!-- Add rating here --> out of 5
-
-  Thank you!
-
-  We appreciate you taking the time to give a rating. If you ever need more support, 
-  don’t hesitate to get in touch!
-
-  <!-- Thank you state end -->
-
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+            // Add event handlers
+            for (const element of ratingElements) {
+                element.onclick = (e) => {
+                    handleRatingSelect(e);
+                };
+            }
+            submitButton.addEventListener('click', handleSubmit);
+        </script>
+    </body>
 </html>
