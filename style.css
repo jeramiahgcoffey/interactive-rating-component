@@ -6,15 +6,18 @@
     --dark-blue: hsl(216, 12%, 8%);
 }
 
-html {
+html,
+body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    max-height: 100%;
 }
 
 body {
     background: var(--dark-blue);
     font-family: 'Overpass', sans-serif;
+    position: relative;
 }
 
 .heading {
@@ -147,9 +150,14 @@ a {
 }
 
 .attribution {
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    transform: translate(50%, 0);
     font-size: 11px;
     text-align: center;
     color: white;
+    margin-bottom: 10px;
 }
 .attribution a {
     color: hsl(228, 45%, 44%);
